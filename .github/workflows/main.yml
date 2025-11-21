@@ -2,24 +2,25 @@ name: Android Build
 
 on:
   push:
-    branches: [ "master" ] # Bu projede ana dal "master" olabilir, kontrol et
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 # Biraz daha eski ve kararlı sürüm
     steps:
     - uses: actions/checkout@v3
     
-    - name: Java Kurulumu (JDK 17)
+    - name: Java 11 Kurulumu
       uses: actions/setup-java@v3
       with:
-        java-version: '17'
+        java-version: '11' # Proje eski olduğu için 17 yerine 11 kullanıyoruz
         distribution: 'temurin'
-        
-    - name: Gradle İzinleri
+        cache: gradle
+
+    - name: İzinleri Ver
       run: chmod +x gradlew
-      
+
     - name: APK Derle
       run: ./gradlew assembleDebug --stacktrace
       
