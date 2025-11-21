@@ -7,14 +7,14 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04 # Biraz daha eski ve kararlı sürüm
+    runs-on: ubuntu-22.04 # Stabil Linux sürümü kullanıldı
     steps:
     - uses: actions/checkout@v3
     
     - name: Java 11 Kurulumu
       uses: actions/setup-java@v3
       with:
-        java-version: '11' # Proje eski olduğu için 17 yerine 11 kullanıyoruz
+        java-version: '11' # Eski projeler için 17 yerine 11 kullanıldı
         distribution: 'temurin'
         cache: gradle
 
@@ -24,8 +24,8 @@ jobs:
     - name: APK Derle
       run: ./gradlew assembleDebug --stacktrace
       
-    - name: APK Yükle
-      uses: actions/upload-artifact@v3
+    - name: APK Yükle (ARTIFACT_V4 FIX)
+      uses: actions/upload-artifact@v4 # Deprecated V3 yerine V4 kullanıldı
       with:
         name: vpn-uygulamasi
         path: app/build/outputs/apk/debug/app-debug.apk
