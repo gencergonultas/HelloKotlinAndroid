@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -20,6 +21,15 @@
         <activity
             android:name=".WelcomeActivity"
             android:parentActivityName=".MainActivity" />
+            
+        <service android:name=".MyTunnel" 
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.VpnService"/>
+            </intent-filter>
+        </service>
+        
     </application>
 
 </manifest>
