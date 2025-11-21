@@ -1,4 +1,4 @@
-plugins {
+Plugins {
     alias libs.plugins.android.application
     alias libs.plugins.kotlin.android
     alias libs.plugins.kotlin.kapt
@@ -38,8 +38,16 @@ android {
 dependencies {
     implementation libs.android.appcompat
 
+    // =======================================================
+    // VPN İÇİN EKLENDİ
+    // =======================================================
+    implementation 'com.wireguard.android:tunnel:1.0.20230706'
+
     implementation libs.coroutines.core
-    implementation libs.coroutines.android
+    implementation libs.coroutines.android 
+    // Coroutines kütüphaneleri zaten vardı, WireGuard tarafından da kullanılıyor.
+    // =======================================================
+
     implementation libs.fragment.ktx
     implementation libs.constraintLayout
 
